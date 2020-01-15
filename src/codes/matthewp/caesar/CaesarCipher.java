@@ -15,13 +15,19 @@ public class CaesarCipher {
             String input = scanner.next();
             scanner.nextLine(); // This must be added for some odd reason, it skips the \n character at EOL
             if (input.equalsIgnoreCase("E")) {
+                System.out.println("Please enter the number of shifts: ");
+                int shifts = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Enter the message you would like to encode:");
-                String str = encode(scanner.nextLine());
+                String str = encode(scanner.nextLine(), shifts);
                 System.out.println("Encoding message...");
                 System.out.println("Message encoded as: " + str);
             } else if (input.equalsIgnoreCase("D")) {
+                System.out.println("Please enter the number of shifts: ");
+                int shifts = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Enter the message you would like to decode: ");
-                String str = decode(scanner.nextLine());
+                String str = decode(scanner.nextLine(), shifts);
                 System.out.println("Encoding message...");
                 System.out.println("Message decoded as: " + str);
             } else if (input.equalsIgnoreCase("Q")) {
@@ -32,7 +38,7 @@ public class CaesarCipher {
         }
     }
 
-    private static String encode(String s) {
+    private static String encode(String s, int shifts) {
         StringBuilder output = new StringBuilder();
         for (char character : s.toCharArray()) {
             if (character == ' ') {
@@ -40,7 +46,7 @@ public class CaesarCipher {
                 continue;
             }
             int index = possChars.indexOf(character);
-            index += 3;
+            index += shifts;
             if (index >= possChars.length()) {
                 index = (index - possChars.length());
             }
@@ -49,7 +55,7 @@ public class CaesarCipher {
         return output.toString();
     }
 
-    private static String decode(String s) {
+    private static String decode(String s, int shifts) {
         StringBuilder output = new StringBuilder();
         for (char character : s.toCharArray()) {
             if (character == ' ') {
@@ -57,7 +63,7 @@ public class CaesarCipher {
                 continue;
             }
             int index = possChars.indexOf(character);
-            index -= 3;
+            index -= shifts;
             if (index <= 0) {
                 index = (index + possChars.length());
             }
