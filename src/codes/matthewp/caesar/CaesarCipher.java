@@ -14,18 +14,15 @@ public class CaesarCipher {
             System.out.print("Please enter your selection: ");
             String input = scanner.next();
             scanner.nextLine(); // This must be added for some odd reason, it skips the \n character at EOL
+            System.out.println("Please enter the number of shifts: ");
+            int shifts = scanner.nextInt();
+            scanner.nextLine();
             if (input.equalsIgnoreCase("E")) {
-                System.out.println("Please enter the number of shifts: ");
-                int shifts = scanner.nextInt();
-                scanner.nextLine();
                 System.out.println("Enter the message you would like to encode:");
                 String str = encode(scanner.nextLine(), shifts);
                 System.out.println("Encoding message...");
                 System.out.println("Message encoded as: " + str);
             } else if (input.equalsIgnoreCase("D")) {
-                System.out.println("Please enter the number of shifts: ");
-                int shifts = scanner.nextInt();
-                scanner.nextLine();
                 System.out.println("Enter the message you would like to decode: ");
                 String str = decode(scanner.nextLine(), shifts);
                 System.out.println("Encoding message...");
